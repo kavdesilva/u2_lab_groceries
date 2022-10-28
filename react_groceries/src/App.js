@@ -1,9 +1,10 @@
 import './App.css';
+import { useState } from "react"
 import Groceries from './components/Groceries';
 
 function App() {
 
-  const groceries = [
+const groceries = [
     {
       item: 'bananas',
       brand: 'dole',
@@ -27,18 +28,18 @@ function App() {
     }
   ]
 
-  const handleClick = (i) => {
-    groceries[i].isPurchased = true
-  }
-
   return (
     <div className="App">
       <header className="header">
         <h1>Groceries</h1>
       </header>
-      <main>
-        <Groceries groceries={groceries} handleClick={handleClick}/>
-      </main>
+      <div className='list'>
+        {
+          groceries.map((item, index) => (
+            <Groceries item={item} key={index} index={index}/>
+          ))
+        }
+      </div>
     </div>
   );
 }
